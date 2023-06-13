@@ -1,0 +1,470 @@
+#include<stdio.h>
+#include <string.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<time.h>
+
+int d,m,y;
+int d1,m1,y1;
+
+void adduser();
+void login();
+void source_destination();
+void italy();
+void france();
+void london();
+void sydney();
+void newyork();
+void tokyo();
+void shimla();
+void show_destination();
+void print_details();
+void print_ticket(int [],int);
+void input(int,int );
+void flights(int );
+void hotels();
+void logout();
+int menu();
+
+struct info
+{
+ int age;
+ int cost;
+ int days;
+ char hname[30];
+ char source_destination[15];
+ char name[30];
+ char gender;
+ float time;
+ char fname[30];
+ char shift[2];
+ char username[100];
+ char password[100];
+} i;
+
+struct login{
+char fname[200];
+char lname[200];
+char username[200];
+char password[20];
+};
+
+int main()
+{
+ system("cls");
+ printf("\n\n\n\n\n\n\t\t\t !!!WELCOME!!! \n\n\t\t\t KB TRAVEL AGENCY");
+ printf("\n\n\t\t press enter to continue .....");
+ getchar();
+ menu();
+ return 0;
+}
+
+int menu()
+{
+ int n;
+ system("cls");
+ printf("\n\tMENU :");
+ printf("\n\n\t1.LOGIN\n\n\t2.BOOKING\n\n\t3. SHOW DESTINATION \n\n\t4. GENERATE BILL\n\n\t5. LOGOUT\n\n\t6. EXIT\n\n\tENTER CHOICE : ");
+ scanf("\n%d", &n);
+ switch 👎
+ {
+ case 1:login();break;
+ case 2:source_destination();break;
+ case 3:show_destination();break;
+ case 4:print_details();break;
+ case 5:logout();break;
+ case 6: return 0;
+}
+getch();
+menu();
+return 0;
+}
+
+void adduser(){
+FILE *log;
+log=fopen("login.txt","w");
+struct login l;
+printf("ENTER FIRST NAME:");
+scanf("%s",l.fname);
+printf("ENTER LAST NAME:");
+scanf("%s",l.lname);
+printf("ENTER USERNAME:");
+scanf("%s",l.username);
+printf("ENETR PASSWORD:");
+scanf("%s",l.password);
+fwrite(&l,sizeof(l),1,log);
+fclose(log);
+printf("\n\npress any key to continue....");
+getch();
+system("cls");
+}
+void login()
+{
+ adduser();
+ char username[200],password[20];
+ FILE *log;
+ log=fopen("login.txt","r");
+ struct login l;
+ printf("USERID:");
+ scanf("%s",&username);
+ printf("PASSWORD:");
+ scanf("%s",&password);
+ while(fread(&l,sizeof(l),1,log))
+ {
+  if(strcmp(username,l.username)==0 && strcmp(password,l.password)==0)
+  {
+  printf("Succesfully logged in\n");
+}
+else{
+printf("PLEASE ENTER CORRECT USERID AND PASSWORD");
+}
+fclose(log);
+printf("\nPress any key to continue....");
+ }
+}
+
+void source_destination()
+{
+ system("cls");
+ int n;
+ printf("\n\t SOURCE\t\t\t\tDESTINATION :");
+ printf("\n\n\t 1.CHENNAI\t\t\t\tITALY");
+ printf("\n\n\t 2.CHENNAI\t\t\t\tFRANCE");
+ printf("\n\n\t 3.CHENNAI\t\t\t\tLONDON");
+ printf("\n\n\t 4.CHENNAI\t\t\t\tSYDNEY");
+ printf("\n\n\t 5.CHENNAI\t\t\t\tNEW YORK");
+ printf("\n\n\t 6.CHENNAI\t\t\t\tTOKYO");
+ printf("\n\n\t 7.CHENNAI\t\t\t\tSHIMLA");
+ printf("\n\n\t ENTER CHOICE : ");
+ scanf("%d", &n);
+ switch 👎
+ {
+ case 1:italy();break;
+ case 2:france();break;
+ case 3:london();break;
+ case 4:sydney();break;
+ case 5:newyork();break;
+ case 6:tokyo();break;
+ case 7:shimla();break;
+ }
+}
+
+
+void italy()
+{
+ int cnt;
+ system("cls");
+ printf("\n\t\tWELCOME TO ITALY TOURISM !!!\n");
+ printf("\n\t\t ENTER NO. OF PEOPLE ");
+    scanf("%d",&cnt);
+ input(cnt,1);
+}
+
+void france()
+{
+ int cnt;
+ system("cls");
+ printf("\n\t\tWELCOME TO FRANCE TOURISM !!!\n");
+ printf("\n\t\t ENTER NO. OF PEOPLE ");
+    scanf("%d",&cnt);
+ input(cnt,2);
+}
+
+void london()
+{
+ int cnt;
+ system("cls");
+ printf("\n\t\tWELCOME TO LONDON TOURISM !!!\n");
+ printf("\n\t\t ENTER NO. OF PEOPLE ");
+    scanf("%d",&cnt);
+ input(cnt,3);
+}
+
+void sydney()
+{
+ int cnt;
+ system("cls");
+ printf("\n\t\tWELCOME TO SYDNEY TOURISM !!!\n");
+ printf("\n\t\t ENTER NO. OF PEOPLE ");
+    scanf("%d",&cnt);
+ input(cnt,4);
+}
+
+void newyork()
+{
+ int cnt;
+ system("cls");
+ printf("\n\t\tWELCOME TO NEW YORK TOURISM !!!\n");
+ printf("\n\t\t ENTER NO. OF PEOPLE ");
+    scanf("%d",&cnt);
+ input(cnt,5);
+}
+
+void tokyo()
+{
+ int cnt;
+ system("cls");
+ printf("\n\t\tWELCOME TO TOKY0 TOURISM !!!\n");
+ printf("\n\t\t ENTER NO. OF PEOPLE ");
+    scanf("%d",&cnt);
+ input(cnt,6);
+}
+
+void shimla()
+{
+ int cnt;
+ system("cls");
+ printf("\n\t\tWELCOME TO SHIMLA TOURISM !!!\n");
+ printf("\n\t\t ENTER NO. OF PEOPLE ");
+    scanf("%d",&cnt);
+ input(cnt,7);
+}
+
+void input(int cnt,int cno)
+{
+ int a[cnt];
+ int pos=0,res;
+ switch(cno)
+ {
+  case 1:strcpy(i.source_destination, "ITALY");break;
+  case 2:strcpy(i.source_destination, "FRANCE");break;
+  case 3:strcpy(i.source_destination, "LONDON");break;
+  case 4:strcpy(i.source_destination, "SYDNEY" );break;
+  case 5:strcpy(i.source_destination, "NEW_YORK");break;
+  case 6:strcpy(i.source_destination, "TOKYO");break;
+  case 7:strcpy(i.source_destination, "SHIMLA" );break;
+ }
+ int x=0,id,ran;
+ while(x<cnt)
+  {  
+  system("cls");
+  FILE *f;
+  f=fopen("info.txt","a+");
+  printf("\n\t\t ENTER %d PERSON DETAILS",x+1);
+  printf("\n\n\t YOUR TRAVEL ID (1-100) : ");
+  srand(time(0));
+  id=rand()%100;
+  printf("%d",id);
+  printf("\n\t ENTER NAME , AGE , GENDER (M/F) :\n\n");
+  printf("\t ");
+  scanf("%s", &i.name);
+  printf("\t ");
+  scanf("%d",&i.age);
+  printf("\t ");
+  getchar();
+    i.gender=getchar();
+    printf("\n\n\t\t press enter to continue .....");
+     getchar();
+ getchar();
+ flights(id);
+ hotels();
+ fprintf(f,"%d %s %d %c %d %s %s %f %s ",id,i.name,i.age,i.gender,i.cost,i.source_destination,i.fname,i.time,i.shift);
+ fprintf(f," %d %d %d %d %d %d %s\n",d,m,y,d1,m1,y1,i.hname);
+      fclose(f);
+      a[x]=id;
+      ++x;
+  }
+ print_ticket(a,cnt);
+}
+
+void flights(int id)
+ {
+  int choice;
+ printf("\n\n\t\t FLIGHTS AVAILABLE : ");
+ printf("\n\n 1. LUFTHANSA: DEPARTURE : 6.00 AM PRICE : 68,000 RS");
+ printf("\n 2. JET AIRWAYS: DEPARTURE : 9.00 AM PRICE : 40,000 RS");
+ printf("\n 3. QATAR AIRWAYS : DEPARTURE : 1.00 PM PRICE : 55,000 RS");
+ printf("\n 4. EMIRATES: DEPARTURE : 5.00 PM PRICE : 75,000 RS");
+ printf("\n 5. AIR ASIA : DEPARTURE : 9.00 PM PRICE : 42,000 RS");
+ printf("\n\n\t ENTER CHOICE : ");
+ scanf("%d",&choice);
+ switch(choice)
+ {
+ case 1: i.cost+=68000;
+ i.time=6.00;
+ strcpy(i.shift,"AM");
+ strcpy(i.fname,"LUFTHANSA");break;
+ case 2: i.cost+=40000;
+ i.time=9.00;
+ strcpy(i.shift,"AM");
+ strcpy(i.fname,"JET_AIRWAYS");break;
+ case 3: i.cost+=55000;
+ i.time=1.00;
+ strcpy(i.shift,"PM");
+ strcpy(i.fname,"QATAR_AIRWAYS");break;
+ case 4: i.cost+=75000;
+ i.time=5.00;
+ strcpy(i.shift,"PM");
+ strcpy(i.fname,"EMIRATES");break;
+ case 5: i.cost+=42000;
+ i.time=9.00;
+ strcpy(i.shift,"PM");
+ strcpy(i.fname,"AIR_ASIA");break;
+ }
+ FILE *p;
+       p=fopen("checkid.txt","a+"); fprintf(p,"%d \n",id);
+        fclose(p);
+        printf("\n\n\t\t press enter to continue .....");
+ getchar();
+ getchar();
+ 
+}
+
+void hotels()
+{
+ int n;
+ system("cls");
+ printf("\n\t\t HOTELS :");
+ printf("\n\n\t1. EMIRATES PALACE\t PRICE : 20,000 PER DAY");
+ printf("\n\n\t2. BURJ AL ARAB\t PRICE : 19,500 PER DAY");
+ printf("\n\n\t3. TOWN HOUSE GALLERIA\t PRICE : 17,000 PER DAY");
+ printf("\n\n\t4. ROYAL MALWANE\t PRICE : 20,500 PER DAY");
+ printf("\n\n\t5. AMANZOE\t PRICE : 18,000 PER DAY");
+ printf("\n\n\t ENTER CHOICE : ");
+ scanf("%d", &n);
+ printf("\n\n\t ENTER NO OF DAYS : ");
+ scanf("%d",&i.days);
+  switch 👎
+ {
+case 1: i.cost+=i.days*20000;
+strcpy(i.hname,"EMIRATES");break;
+case 2: i.cost+=i.days*19500;
+strcpy(i.hname,"BURJ_AL_ARAB");break;
+case 3: i.cost+=i.days*17000;
+strcpy(i.hname,"TOWN_HOUSE_GALLERIA");break;
+case 4: i.cost+=i.days*20500;
+strcpy(i.hname,"ROYAL_MALWANE");break;
+case 5: i.cost+=i.days*18000;
+strcpy(i.hname,"AMANZOE");break;
+ }
+ printf("\n\t ENTER DATE OF CHECKIN : ");
+ scanf("%d",&d);
+ printf("\n\t ENTER MONTH OF CHECKIN : ");
+ scanf("%d",&m);
+ printf("\n\t ENTER YEAR OF CHECKIN : ");
+ scanf("%d",&y);
+
+ d1=d+i.days;
+ m1=m;
+ y1=y;
+ if(d1>31)
+ {
+  d1=d1%31;
+  m1+=1;
+  if(m1>12)
+  {
+   m1=m1%12;
+   y1+=1;
+  }
+ }
+printf("\n\n\t\t press enter to continue .....");
+ getchar();
+ getchar();
+}
+
+void print_ticket(int a[],int cnt)
+{
+ system("cls");
+ int z,no,flag;
+  FILE *f;
+    printf("\n\n\t YOUR TICKET:");
+  for(z=0;z<cnt;++z)
+  { flag=0;
+  f=fopen("info.txt", "r");
+ while (!feof(f))
+ {  
+  fscanf(f,"%d %s %d %c %d %s %s %f %s %d %d %d %d %d %d %s",&no,&i.name,&i.age,&i.gender,&i.cost,&i.source_destination,&i.fname,&i.time,&i.shift,&d,&m,&y,&d1,&m1,&y1,&i.hname);
+   if(a[z]==no)
+  {
+  printf("\n\n\tID : %d",no);
+  printf("\n\tNAME : %s\t\t HOTEL NAME : %s ", i.name,i.hname);
+  printf("\n\tAGE : \t%d\t\t CHECKIN : %d/%d/%d ",i.age,d,m,y);
+  printf("\n\tGENDER : %c\t \t CHECKOUT : %d/%d/%d", i.gender,d1,m1,y1);
+        printf("\n\tDESTINATION : %s",i.source_destination);
+        printf("\n\tFLIGHT NAME : %s",i.fname);
+        printf("\n\tDEPARTURE TIME : %f %s",i.time,i.shift);
+       flag=1;
+   }
+     if(flag==1)
+     break;
+           }
+  fclose(f);
+  }
+   printf("\n\n\t\tTOTAL COST : %ld",i.cost);
+printf("\n\n\t\tBOOKING SUCCESSFULL");
+   printf("\n\n\t\t press enter to go to main menu .....");
+     getchar();
+menu();
+}
+
+void show_destination(){
+system("cls");
+printf("\n\t SOURCE\t\t\t\tDESTINATION :");
+    printf("\n\n\t 1.CHENNAI\t\t\t\tITALY");
+    printf("\n\n\t 2.CHENNAI\t\t\t\tFRANCE");
+    printf("\n\n\t 3.CHENNAI\t\t\t\tLONDON");
+    printf("\n\n\t 4.CHENNAI\t\t\t\tSYDNEY");
+    printf("\n\n\t 5.CHENNAI\t\t\t\tNEW YORK");
+    printf("\n\n\t 6.CHENNAI\t\t\t\tTOKYO");
+    printf("\n\n\t 7.CHENNAI\t\t\t\tSHIMLA");
+
+}
+
+void print_details()
+{
+ system("cls");
+ int id,no,flag=0;
+ printf("\n\t TRAVELLERS DETAILS :\n");
+ printf(" \nENTER ID OF THE PERSON YOU ARE SEARCHING FOR : ");
+ scanf("%d", &id);
+  FILE *f;
+   f=fopen("info.txt", "r");
+ while (!feof(f))
+ {
+   fscanf(f,"%d %s %d %c %d %s %s %f %s %d %d %d %d %d %d %s",&no,&i.name,&i.age,&i.gender,&i.cost,&i.source_destination,&i.fname,&i.time,&i.shift,&d,&m,&y,&d1,&m1,&y1,&i.hname);
+
+  if(id==no)
+  {
+  printf("\n\n\tID : %d",no);
+  printf("\n\tNAME : %s\t\t HOTEL NAME : %s ", i.name,i.hname);
+  printf("\n\tAGE : \t%d\t\t CHECKIN : %d/%d/%d ",i.age,d,m,y);
+  printf("\n\tGENDER : %c\t \t CHECKOUT : %d/%d/%d", i.gender,d1,m1,y1);
+        printf("\n\tDESTINATION : %s",i.source_destination);
+        printf("\n\tFLIGHT NAME : %s",i.fname);
+        printf("\n\tDEPARTURE TIME : %f %s",i.time,i.shift);
+        printf("\nPress enter to continue .....");
+ flag=1;
+  }
+     if(flag==1)
+     break;
+           }
+ fclose(f);
+ if(flag==0)
+ {
+  printf("\nNo bill exists.");
+ }
+}
+
+void logout()
+{
+    FILE *log;
+    struct login l;
+log=fopen("login.txt","rw");
+char currentuser[200];
+printf("\nENTER YOUR USERNAME FOR LOGGING OUT:");
+scanf("%s",&currentuser);
+while(fread(&l,sizeof(l),1,log))
+{
+    if(strcmp(currentuser,l.username)==0)
+    {
+        printf("You have been successfully logged out\n");
+        return;
+    }
+    else{
+    printf("You have to login to be logout\n");
+}
+    fclose(log);
+    printf("\nPress any key to continue....");
+}
+return ;
+}
